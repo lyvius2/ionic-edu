@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app="todoApp">
+	<head>
+		<meta charset="utf-8">
+		<title>todo</title>
+	</head>
+	<body ng-controller="todoController">
+		<h1>{{name}}님의 할 일 목록</h1>
+		<p>
+			전체 할 일 : {{todos.length}}개 / 미완료 할일 : {{getIncompleteNum(todos)}}개
+			<button ng-click="removeCompleteTodos(todos)">완료된 할 일 제거</button>
+		</p>
+		<form action="makeTodo.php" method="post" ng-submit="makeTodo(todos,title,$event)">
+			<fieldset>
+				<legend>할 일 입력폼</legend>
+				<label for="todo">할 일 </label>
+				<input id="todo" type="text" placeholder="할 일 입력" ng-model="title"/>
+				<button type="submit">입력</button>
+			</fieldset>
+		</form>
+		<ul>
+			<li ng-repeat="todo in todos">
+				<label>
+					<input type="checkbox" ng-model="todo.end"/>
+					{{todo.name}}
+				</label>
+				<button ng-click="removeTodo(todos,$index)">삭제</button>
+			</li>
+		</ul>
+		<script src="js/angular.min.js"></script>
+		<script>
+
+			//Todo생성자 함수
+			function Todo(name, end){
+				this.name = name;
+				this.end = end||false;		//완료여부
+				//처음에 할 일 생성되면 당연히 false
+
+			}
+
+			var app = angular.module("todoApp",[]);
+			app.controller("todoController",["$scope",function($scope){
+				
+				//완료된 할일을 삭제하는 메서드
+				$scope.removeCompleteTodos = function(todos){
+					//todos의 사이즈가 변경이 되면 안됩니다.
+
+					//새로운 배열을 만들고 완료되지 않은 할일을 입력시키는 방법
+					$scope.todos = [];
+
+					angular.forEach(todos, function(todo,index){
+						//완료되지 않은 할일
+						if(!todo.end){
+							$scope.todos.push(todo);
+						}
+					});
+				}
+
+				//해당 할일을 삭제하는 메서드
+				$scope.removeTodo = function(todos,idx){
+					//todos는 할일 목록
+					//idx는 그 할일의 index
+					todos.splice(idx,1);
+				}
+
+				//미완료 할일 갯수를 얻어오는 메서드
+				$scope.getIncompleteNum = function(todos){
+					//angular.forEach() 메서드를 이용해서 todos안의 todo에 접근하여
+					//그 todo중에 end가 false인 갯수를 얻은 후 리턴
+					var num = 0;
+					angular.forEach(todos, function(todo,index){
+						if(!todo.end) num++;
+					})
+					return num;
+				}
+
+				//todo를 입력하는 메서드
+				$scope.makeTodo = function(todos,title,e){
+					//단일페이지 기반이기 때문에 makeTodo.php로 이동시키지 않기 위해서
+					e.preventDefault();
+
+					//입력할 배열 : todos
+					//할일 : ??
+					todos.push(new Todo(title));
+					$scope.title = "";
+				};
+
+				//사람명
+				$scope.name = "김연아";
+
+				//할 일들
+				$scope.todos = [
+					new Todo("영화보기"),
+					new Todo("집에 가기"),
+					new Todo("잠자기"),
+					new Todo("밥먹기",true),
+					new Todo("약속")
+				];
+			}]);
+		</script>
+	</body>
+</html>

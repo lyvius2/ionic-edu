@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html data-ng-app="routerApp">
+<head>
+	<meta charset="UTF-8" />
+	<title>ui router 예제</title>
+	<style>
+		.box {
+			border:1px solid #333;
+		}
+	</style>
+</head>
+<body>
+	<h1>ui router에 대해서</h1>
+	<ul>
+		<li><a href="#route1">라우트1</a></li>
+		<li><a href="#route2">라우트2</a></li>
+	</ul>
+	<div class="box" ui-view></div>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-ui-router.js"></script>
+	<script>
+
+	var app = angular.module("routerApp",["ui.router"]);
+	app.config(function($stateProvider, $urlRouterProvider){
+		//$stateProvider.state("상태이름", 옵션객체);
+		
+		//옵션의 속성
+		//1) url : 실제경로
+		//2) templateUrl : 템플릿파일경로
+		$stateProvider.state("route1",{
+			url:"/route1",
+			templateUrl:"view/route1.js"
+		});
+
+		// URL : ' #/route1/list ' 으로 구동
+		$stateProvider.state("route1.list",{
+			url:"/list",
+			templateUrl:"view/list1.js",
+			controller:"listController"
+		})
+
+		$stateProvider.state("route2",{
+			url:"/route2",
+			templateUrl:"view/route2.js",
+			controller:"route2Controller"
+		});
+
+		//otherwise
+		$urlRouterProvider.otherwise("/route1");
+
+	});
+
+	app.controller("listController",["$scope", function($scope){
+		$scope.names = [
+			"김연아",
+			"박지성"
+		]
+	}]);
+
+	app.controller("route2Controller",["$scope","$state", function($scope, $state){
+		//stateProvider는 $location이 아니라
+		//$state를 이용해서 상태를 이동합니다.
+		$scope.goList = function(){
+			//버튼을 클릭했을때 route1으로 이동
+			$state.go("route1");
+		}
+	}]);
+
+	</script>
+</body>
+</html>

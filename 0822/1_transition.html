@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8" />
+		<title>transition</title>
+		<style>
+			
+			.wrap {
+				width:238px; 
+				height:199px;
+				border:5px solid #000;
+				cursor:pointer; 
+				position: fixed;
+				left:50%;
+				top:50%;
+				margin:-99.5px 0 0 -119px;
+				overflow: hidden;
+			}
+			
+			.box {
+				width:238px;
+				height:400px;
+				position: absolute;
+				top:0;
+				/*
+				transition이란 css의 변화값을
+				부드럽게 처리하는 속성
+				
+				transition:속성명 시간 가속도 딜레이시간;
+
+
+				http://cubic-bezier.com/
+				가속도를 custom하게
+
+				*/
+
+				transition:.4s cubic-bezier(.76,.01,.46,1.62) .1s;
+			}
+			.box:hover {
+				top:-200px;
+			}
+			.box img {
+				display: block;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<img src="img/500px.png" alt=""/>
+				<img src="img/500px_hover.png" alt=""/>
+			</div>
+		</div>
+	</body>
+</html>

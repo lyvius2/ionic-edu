@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>transform_origin</title>
+		<style>
+		/*
+			origin:기원;
+
+			transform-origin은
+			transform의 시작점을 지정
+
+			기본은 50% 50%(요소의 width,height)
+
+
+
+		*/
+			body {
+				background:#339499;
+				text-align: center;
+				padding-top:50px;
+			}
+			
+			img {
+				margin:50px;
+				transition:.2s ease;
+				transform-origin:50% 0%;
+			}
+
+			img:active {
+				transform:rotate(30deg);
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<img id="normal" src="img/frame-getstarted.png" />
+		<img id="origin" src="img/frame-getstarted.png" />
+	</body>
+</html>

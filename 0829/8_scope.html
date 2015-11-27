@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html data-ng-app="scopeApp">
+<head>
+<meta charset="UTF-8">
+<title>scope의 범위</title>
+</head>
+<body data-ng-controller="parentController">
+	<div >
+		<h2>{{name}}</h2>
+		<!-- 자식 scope에 선언된 모델 사용 불가 -->
+		<h3>{{director}}</h3>
+		<ul data-ng-controller="childController">
+			<li>이름 : {{name}} / 감독 : {{director}}</li>
+		</ul>
+	</div>
+	<script src="js/angular.min.js"></script>
+	<script>
+		var app = angular.module("scopeApp",[]);
+
+		//부모 컨트롤러
+		app.controller("parentController",["$scope",function($scope){
+			$scope.name = "미니언즈";
+		}]);
+
+		//자식 컨트롤러
+		app.controller("childController",["$scope",function($scope){
+			$scope.name = "인사이드 아웃";	//Override 개념으로 생각하면 됨
+			$scope.director="피트 닥터";
+		}]);
+
+	</script>
+</body>
+</html>

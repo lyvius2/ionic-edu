@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html data-ng-app="exApp">
+<head>
+<meta charset="UTF-8">
+<title>Angular.js 복습</title>
+</head>
+<body data-ng-controller="exController">
+<h1>{{title}} 목록</h1>
+<ul>
+	<li data-ng-repeat="phone in phoneList">
+	이름 : {{phone.name}}
+	/ 가격 : <span data-ng-bind="phone.price|currency:undefined:0"></span>
+	/ 출시일 : {{phone.release|date:"yyyy년 M월 d일"}}</li>
+</ul>
+
+<!-- angular 기본 라이브러리  -->
+<script src="js/angular.min.js"></script>
+<!-- i18n 한글처리 라이브러리 -->
+<script src="js/angular-locale_ko.js"></script>
+<script>
+
+	// 생성자 함수
+	// 객체가 만들어질때 같은 속성을 지정
+	// (오타방지) 템플릿 형태로 객체를 만들 수 있음
+	function Phone(name, price, release){
+		this.name = name;
+		this.price = price;
+		this.release = release;
+	}
+
+	var app = angular.module("exApp",[]);
+	// app에 controller 설정
+	app.controller("exController",["$scope", function($scope){
+
+		// $scope : 데이터의 스코프(영역) 지정
+		$scope.title = "스마트폰";
+
+		// 출력할 스마트폰의 정보(JSON)
+		$scope.phoneList = [
+			new Phone("아이폰", 825890, new Date(2014, 9, 31)),
+			new Phone("삼성 갤럭시노트5", 899800, new Date(2015, 7, 21)),
+			new Phone("LG G4", 699600, new Date(2015, 4, 25))
+		];
+
+	}]);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>transform</title>
+<style>
+	/*
+	 * transform은 
+	 * 1) translate : 운반
+	 * 2) scale : 비율
+	 * 3) rotate : 회전
+	 * 4) skew : 기울어짐
+
+	 	그래픽카드의 물리가속을 지원
+
+	 */
+	div {
+		width:100px;height:100px;
+	}
+	
+	#translate {
+		background:deepskyblue;
+		transition:.2s ease;
+	}
+
+	body:hover #translate {
+
+		transform:translate(400px,150px);
+	}
+
+
+	#scale {
+		background:deeppink; 
+		transform:translateX(200px);  
+		transition:.2s ease;
+	}
+	
+	body:hover #scale {
+		transform:translateX(200px) scale(2);
+	}
+	
+	#rotate {
+		background:lime;
+		transform:translate(600px, -50px) rotate(0);
+		transition:.2s ease;
+	}
+
+	/*
+		transform 노하우
+		1) 순서에 따라 완전히 다르게
+
+		2) 기본값 지정
+
+	*/
+
+	body:hover #rotate {
+		transform:translate(600px, -50px) rotate(360deg);
+	}
+
+	
+	#skew {
+		background:orange;
+		transform:translate(400px,-50px);
+	}
+
+body:hover #skew {
+transform:translate(400px,-50px) skewY(20deg);
+}
+	
+</style>
+</head>
+<body>
+<div id="translate"></div>
+<div id="scale"></div>
+<div id="rotate"></div>
+<div id="skew"></div>			 
+</body>
+</html>
+
+
+
+

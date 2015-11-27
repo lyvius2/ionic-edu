@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>필터의 사용</title>
+<style>
+li {float:left;}
+</style>
+</head>
+<body data-ng-app="filterApp">
+	<div data-ng-controller="mainController">
+		<h1>통화필터</h1>
+		<p>원본 : {{price}}</p>
+		<!--
+			angular의 필터 : '|' 
+			필터의 옵션적용 : ':'
+		-->
+		<p>필터적용 : {{price|currency:undefined:0}}</p>
+		<hr/>
+		<h1>날짜</h1>
+		<p>원본 : {{now}}</p>
+		<p>필터 적용 : {{now|date:"yyyy년 M월 d일"}}</p>
+		<hr/>
+		<h1>이름으로 검색</h1>
+		<input type="text" data-ng-model="name" placeholder="영화 이름을 입력하세요."/>
+		<ul>
+			<li data-ng-repeat="movie in movies|filter:name">
+				<img src="poster/{{movie.poster}}" width="100"/>
+				제목 : {{movie.name}}
+			</li>
+		</ul>
+		<hr/>
+	</div>	
+	<script src="js/angular.min.js"></script>
+	<!-- i18n 지정 : 1.3버전부터 지원 -->
+	<script src="js/angular-locale_ko.js"></script>
+	<script>
+		var app = angular.module("filterApp",[]);
+		app.controller("mainController",["$scope",function($scope){
+			//가격
+			$scope.price = 389000;
+			//현재 시간
+			$scope.now = new Date();
+
+			$scope.movies = [
+				{poster:"poster1.jpg",director:"류승완",name:"베테랑",grade:106,gradeNum:12},
+				{poster:"poster4.jpg",director:"백감독",name:"뷰티 인사이드",grade:37,gradeNum:4},
+				{poster:"poster2.jpg",director:"최동훈",name:"암살",grade:51,gradeNum:6},
+				{poster:"poster5.jpg",director:"강효진",name:"미쓰와이프",grade:68,gradeNum:11},
+				{poster:"poster3.jpg",director:"니마 누리자데",name:"아메리칸 울트라",grade:29,gradeNum:4},
+				{poster:"poster6.jpg",director:"신동엽",name:"치외법권",grade:23,gradeNum:3}
+			];
+
+
+		}]);
+	</script>
+</body>
+</html>
+
+
+
+

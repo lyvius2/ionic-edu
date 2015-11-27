@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html data-ng-app="ajaxApp">
+<head>
+<meta charset="UTF-8">
+<title>비동기통신을 위한 $http</title>
+</head>
+<body data-ng-controller="ajaxController">
+	<button data-ng-click="startAjax()">시작</button>
+	<ul>
+		<li data-ng-repeat="movie in movies">
+			<img src="poster/{{movie.poster}}" width="100" />
+			{{movie.name}}
+		</li>
+	</ul>
+	<script src="js/angular.min.js"></script>
+	<script>
+		/* jQuery Ajax 기본 문법
+		$.ajax("주소",{
+			type:"get",
+			dataType:"json",
+			error:function(){},
+			success:function(){}
+		});
+		*/
+
+		var app = angular.module("ajaxApp",[]);
+
+		app.controller("ajaxController",["$scope","$http", function($scope, $http){
+			$scope.startAjax = function(){
+				// 요청도 json / 응답도 json
+				var httpPromise = $http({
+					"method":"get",
+					"url":"json/movies.json"
+				});
+
+				//성공 시 호출되는 callback
+				httpPromise.success(function(data, status){
+					$scope.movies = data;
+				});
+
+				//실패 시 호출되는 callback
+				httpPromise.error(function(data, status, header, config){
+					alert("실패");
+				});
+			}
+		}]);
+	</script>
+</body>
+</html>

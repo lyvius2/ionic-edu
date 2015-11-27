@@ -1,0 +1,12 @@
+<ion-view title="이모티콘 목록">
+	<ion-content>
+	<h2 class="title">카카오 이모티콘</h2>
+	<ion-list>
+		<ion-item ng-repeat="emoticon in emoticons" class="item-avatar" href="#detail/{{emoticon.id}}">
+			<img src="img/{{emoticon.img}}" />
+			<h2>{{emoticon.name}}</h2>
+			<p>{{emoticon.profile}}</p>
+		</ion-item>
+	</ion-list>
+	</ion-content>
+</ion-view>

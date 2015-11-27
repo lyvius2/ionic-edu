@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="includeApp">
+<head>
+	<meta charset="UTF-8"/>
+	<title>ng-include</title>
+	<style>
+		#footer {
+			width:800px;
+			height:100px;
+			background:#00bfff;
+			margin:auto;
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<data-ng-view></data-ng-view>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-locale_ko.js"></script>
+	<script src="js/angular-route.min.js"></script>
+	<script>
+		var app = angular.module("includeApp",["ngRoute"]);
+
+		app.config(function($routeProvider){
+			
+			$routeProvider.when("/main",{
+				templateUrl : "view/main.js",
+				controller : "mainController"
+			});
+			
+			$routeProvider.when("/list",{
+				templateUrl : "view/main.js",
+				controller : "listController"
+			});
+
+			$routeProvider.otherwise({redirectTo:"/main"});
+
+		});
+
+		app.controller("listController",["$scope", function($scope){
+			//view.header
+			//view.content
+			//view.footer
+
+			$scope.view = {};
+			//헤더, 컨텐트, 푸터 정보는 전부 하나의 view에 대한 데이터이므로
+			//같이 묶어서 view라는 객체의 속성으로 지정하면 좋습니다.
+
+			$scope.view.header = "view/header.js";
+			$scope.view.content = "view/dday.js";
+			$scope.view.footer = "view/footer.js";
+
+		}]);
+
+		app.controller("mainController",["$scope", function($scope){
+			//view.header
+			//view.content
+			//view.footer
+
+			$scope.view = {};
+			//헤더, 컨텐트, 푸터 정보는 전부 하나의 view에 대한 데이터이므로
+			//같이 묶어서 view라는 객체의 속성으로 지정하면 좋습니다.
+
+			$scope.view.header = "view/header.js";
+			$scope.view.content = "view/content.js";
+			$scope.view.footer = "view/footer.js";
+
+		}]);
+	</script>
+</body>
+</html>

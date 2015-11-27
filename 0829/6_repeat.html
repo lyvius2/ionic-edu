@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html data-ng-app="repeatApp">
+<head>
+<meta charset="UTF-8">
+<title>영화내용 출력페이지</title>
+</head>
+<body data-ng-controller="repeatController">
+	<h1>영화목록<em data-ng-bind="movies.length"></em>개</h1>
+	<!-- 
+		ng-click은 해당 컨트롤러가 가지고 있는 $scope 안에 있는 메서드 
+		(이름의 중복 등등 때문에)
+	-->
+	<button data-ng-click="deleteMovie(movies)">삭제</button>
+	<ul>
+		<!-- 템플릿을 바로 이용(html로) -->
+		<li data-ng-repeat="movie in movies">
+			<img src="poster/{{movie.poster}}">
+			<h2 data-ng-bind="movie.name"></h2>
+			<p>{{movie.director}}</p>
+		</li>
+	</ul>
+	<script src="js/angular.min.js"></script>
+	<script>
+
+		//앱의 모듈 지정
+		var app = angular.module("repeatApp",[]);
+		//컨트롤러 지정
+		app.controller("repeatController",['$scope',function($scope){
+
+			//서버에서 데이터가 넘어옵니다.
+			$scope.movies = [
+				{poster:"poster1.jpg",director:"류승완",name:"베테랑",grade:106,gradeNum:12},
+				{poster:"poster4.jpg",director:"백감독",name:"뷰티 인사이드",grade:37,gradeNum:4},
+				{poster:"poster2.jpg",director:"최동훈",name:"암살",grade:51,gradeNum:6},
+				{poster:"poster5.jpg",director:"강효진",name:"미쓰와이프",grade:68,gradeNum:11},
+				{poster:"poster3.jpg",director:"니마 누리자데",name:"아메리칸 울트라",grade:29,gradeNum:4},
+				{poster:"poster6.jpg",director:"신동엽",name:"치외법권",grade:23,gradeNum:3}
+			];
+
+			//해당 컨트롤러에서만 작동되는 메서드
+			/*
+			$scope.deleteMovie = function() {
+				alert(this.movies);
+			};*/
+
+			//DI <-- Dependancy Injection. 의존성 주입(필요한 것이 있으면 받아서 사용)
+			$scope.deleteMovie = function(movies) {
+				//movies 배열에 접근법
+
+				// 1) alert($scope.movies);
+				// 2) alert(this.movies);
+				// 3) 의존성 주입 사용 alert(movies);
+				movies.shift();
+			};
+
+		}]);
+	</script>
+</body>
+</html>

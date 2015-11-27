@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>click_3d</title>
+		<style>
+			@font-face{
+				font-family:'calvin_bookbook';
+				font-family:'calvin_bookbook';
+				src:url(fonts/calvinbook-webfont.eot);
+				src:url(fonts/calvinbook-webfont.eot?#iefix) format("embedded-opentype"),
+				    url(fonts/calvinbook-webfont.woff) format("woff"),
+				    url(fonts/calvinbook-webfont.ttf) format("truetype");
+			    font-weight:normal;
+			    font-style:normal
+			}
+			
+			body {
+				background:#FF6158;
+				margin:0;
+			}
+			
+			:focus {
+				outline: none;
+			}
+			
+			#mainMenu {
+				width:100%;
+				height:480px;
+				margin:auto;
+				position: fixed;
+				bottom:0;
+				
+			}
+			#mainMenu>ul {	
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				text-align: center;
+			}
+			#mainMenu>ul>li {
+				width:300px;
+				height:400px;
+				display: inline-block;
+				width:25%;
+			}
+			
+			@media screen and (max-width:960px) {
+				#mainMenu>ul>li {
+				width:240px;
+				}
+				#mainMenu {
+					width:960px;
+				}
+			}
+			
+			#mainMenu .menu:nth-child(1)>a {
+				background-image:url(img/2.gif);
+				background-color:#F9A022;
+				
+			}
+			#mainMenu .menu:nth-child(2)>a {
+				background-image:url(img/3.gif) ;
+				background-color:#FFCC33;
+			}
+			#mainMenu .menu:nth-child(3)>a {
+				background-image:url(img/4.gif);
+				background-color:#B0DFB3;
+			}
+			#mainMenu .menu:nth-child(4)>a {
+				background-image:url(img/5.gif);
+				background-color:#3AA59C;
+			}
+			
+			.menu>a {
+				display:inline-block;
+				width:100%;
+				height:400px;
+				background-position:50% 0;
+				background-repeat:no-repeat;
+				text-align: center;
+				font-family:'calvin_bookbook',sans-serif;
+				color:#fff;
+				text-transform: uppercase;
+				text-decoration: none;
+				line-height:700px;
+				transition:.2s ease;
+				transform-origin:50% 100%;
+			}
+
+.menu>a:active {
+	transform:perspective(400px) rotateX(30deg);
+}
+
+
+			#footer {
+				height:80px;
+				background-color: #34394C;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="mainMenu">
+			<ul><!-- 
+				 --><li class="menu"><a href="">Design digital</a></li><!-- 
+				 --><li class="menu"><a href="">Special Media</a></li><!-- 
+				 --><li class="menu"><a href="">Desenvolvimento</a></li><!-- 
+				 --><li class="menu"><a href="">Gerenciamento de contas</a></li>
+			</ul>
+			<div id="footer"></div>
+		</div>
+		
+	</body>
+</html>
+
+
+
+
+
+

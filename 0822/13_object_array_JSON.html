@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8"/>
+		<title>자바스크립트객체</title>
+		<style type="text/css">
+			h1 {
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 id="test" class="test">테스트</h1>
+		<script type="text/javascript">
+
+			//객체, 배열, JSON
+
+			//1)객체 : 일반객체
+
+            //  브라우저 내장객체 : window, document,location...
+            //  자바스크립트 내장객체 : Date, String.....
+            //요소객체 : h1, button,...
+
+            //jquery객체 : (요소객체를 업그레이드)
+
+
+
+            //객체란 속성들의 묶음
+            //(속성이란 이름, 값을 가지 있는것)
+
+            //객체생성
+            var yuna = {
+            	        "name":"김연아",
+            	        "height":164,
+            	        "agent":"올댓스포츠",
+            	        "weight":47
+        				};
+
+			//alert(yuna.name);
+
+
+
+			//배열
+			//배열은 index가 있는 변수들의 묶음
+			var arr = [3,5,9,11];
+
+			//배열에서 각 변수에 접근할때
+			//번지수로 접근(0부터 시작)
+
+			//alert(arr[2]);
+
+
+
+			//json이란 배열+객체
+			//요새 서버~클라이언트간의 연결,작동등에
+			//쓰입니다.
+
+
+			var json = [
+				{"name":"김연아","age":25},
+				{"name":"손흥민","age":35},
+				{"name":"류현진","age":59},
+				{"name":"박지성","age":72}
+			];
+
+			alert(json[2].age);
+
+		</script>
+	</body>
+</html>
+
+
+
+
+
+

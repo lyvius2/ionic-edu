@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>16_3d 큐브</title>
+<style type="text/css">
+
+
+#perspective {
+	width:200px;
+	height:200px;
+	position: fixed;
+	left:50%;
+	top:50%;
+	margin:-100px 0 0 -100px;
+	perspective:500px;
+}
+
+#cube {
+width:200px;
+height:200px;
+border:1px dotted #000;
+position: absolute;
+animation:4s roll linear infinite;
+/*
+	
+	자식들을 실제 3D공간에 배치시키는 속성
+	(익스플로러에서는 안됨, (windows 10)Edge에서 됨)
+
+*/
+transform-style:preserve-3d;
+}
+
+@keyframes roll {
+from {transform:rotateX(0) rotateY(0);}
+to {transform:rotateX(360deg) rotateY(360deg);}
+}
+
+.side {
+width:200px;
+height:200px;
+font:bold 120px/200px arial,sans-serif;
+text-align: center;
+color:#fff;
+text-shadow:2px 2px 2px #333;
+position:absolute;
+opacity: .4;
+}
+
+.side:nth-child(1) {
+	background:#F44336;
+	transform:rotateX(270deg) translateZ(100px);
+}.side:nth-child(2) {
+	background:#9C27B0;
+	transform:rotateX(90deg) translateZ(100px);
+}.side:nth-child(3) {
+	background:#2196F3;
+	transform:rotateY(270deg) translateZ(100px);
+}.side:nth-child(4) {
+	background:#4CAF50;
+	transform:rotateY(90deg) translateZ(100px);
+}.side:nth-child(5) {
+	background:#FFEB3B;
+	transform: rotateY(180deg) translateZ(100px) ;
+}.side:nth-child(6) {
+	background:#FF5722;
+	transform:rotateY(0deg) translateZ(100px);
+}
+
+</style> 
+</head>
+<body>
+<!-- 
+
+CSS를 가지고 3D를 만들때
+1) 보기에만 3D
+2) 3D 공간에 배치
+
+중요한 것은 perspective
+
+
+-->
+<div id="perspective">
+	<div id="cube">
+		<div class="side">1</div>	
+		<div class="side">2</div>	
+		<div class="side">3</div>	
+		<div class="side">4</div>	
+		<div class="side">5</div>	
+		<div class="side">6</div>	
+	</div>
+</div>
+</body>
+</html>

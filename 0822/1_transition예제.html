@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>transition예제</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<style>
+			#wrap {
+				width:100%;
+				height:800px;				
+				background-image:url(img/bg_img1.jpg);
+				background-position:center;
+				background-size:cover;
+				position: fixed;
+				top:50%;
+				margin-top:-400px;
+			}
+			
+			#menuBox {
+				width:1200px;
+				margin:auto;
+				height:700px;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			#menuBox ul {
+				width:1200px;
+				height:100px;
+				position: absolute;
+				top:600px;
+			}
+			
+			#menuBox ul>li {
+				width:400px;
+				height:140px;
+				float: left;
+				background-size:100% 100%;
+				cursor: pointer;
+				/*
+				 * IR(이미지 대치기법)
+				 */
+				text-indent: -9999px;
+				overflow: hidden;  
+				bottom:0;
+				position: relative; 
+				
+				
+			}
+
+			#menuBox li:hover {
+				transition:.2s cubic-bezier(.76,.01,.46,1.62);	
+				bottom:40px;
+			}
+
+			
+			#menuBox ul>li:nth-child(1) {
+				background-image:url(img/menu1.png);
+			}
+			#menuBox ul>li:nth-child(2) {
+				background-image:url(img/menu2.png);
+			}
+			#menuBox ul>li:nth-child(3) {
+				background-image:url(img/menu3.png);
+			}
+
+			/*
+			
+				ctrl+shift+k : 한줄 지우기;
+
+				ctrl + shift + 방향키 : 움직이기;
+
+				ctrl + shift + d : 한줄 복사;
+
+			*/
+			
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="menuBox">
+			<ul>
+				<li>Quarterly Update</li>
+				<li>Feature</li>
+				<li>Interview</li>
+			</ul>
+			</div>
+		</div>
+	</body>
+</html>

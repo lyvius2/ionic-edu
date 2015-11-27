@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html data-ng-app="routeApp">
+<head>
+<meta charset="UTF-8">
+<title>라우터 설정</title>
+<link rel="stylesheet" type="text/css" href="css/angular-datepicker.css">
+<style>
+	body {
+	margin:0;}
+	#wrap {
+	width:1000px;margin:auto;border:1px solid #333;}
+	
+	#header {
+	width:1000px;
+	background:#aaa;
+	border-top:1px solid #aaa;
+	}
+	
+	#header ul {
+		margin:0;
+		padding:0;
+		list-style: none;
+		overflow: hidden;
+	}
+	
+	#header li {
+		float:left;
+		padding:5px 10px;
+	}
+	#content {
+		min-height:500px;
+	}
+	#footer {
+	height:100px;
+	line-height:100px;
+	text-align:center;
+	border-top:1px solid #333}
+	
+  	
+	datepicker {
+		width:200px;
+	}
+
+	#nameBox {
+		float:left;
+		margin: 0 20px 0 0;
+	}
+
+	hr {
+		clear: both;
+	}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<h1>로고</h1>
+			<ul>
+				<li><a href="#main">메인페이지</a>
+				<li><a href="#phone">스마트폰보기</a>
+				<li><a href="#date">데이트피커</a>
+				<li><a href="#dday">D DAY앱</a>
+			</ul>
+		</div>
+		<div id="content">
+			<!-- ng-view에 view가 바뀜 -->
+			<ng-view></ng-view>
+		</div>
+		<div id="footer">&copy; 2015 cai.com</div>
+	</div>
+	<!-- 라이브러리 import -->
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-locale_ko.js"></script>
+	<script src="js/angular-datepicker.js"></script>
+	<script src="js/angular-route.min.js"></script>
+	<script src="js/DDayCalculator.js"></script>
+	<script>
+		//route 모듈을 삽입해야 한다.
+		var app = angular.module("routeApp",['ngRoute','720kb.datepicker']);
+
+		function Phone(name, price, release){
+			this.name = name;
+			this.price = price;
+			this.release = release;
+		}
+
+		function DDay(title,date) {
+			this.title = title;
+			this.date = new Date(date);
+		}
+
+		//route란 주소의 이동을 처리해주는 것
+		//route설정은 config에서
+		//$routeProvider 객체에
+		//해당 URL과 View파일과 
+		app.config(function($routeProvider){
+			//주소설정 : when()이용
+			//$routeProvider.when(링크:옵션객체);
+			//$routeProvider.when(링크:옵션객체);
+
+			//옵션객체 주요속성
+			// 1) template : 마크업토드를 직접 작성
+			// 2) templateUrl : 실제 뷰(view) 페이지의 경로
+			// 3) controller
+			$routeProvider.when("/main",{
+				template:"<h1>메인페이지 입니다.</h1>"
+			});
+
+			$routeProvider.when("/phone",{
+				templateUrl:"view/phone.js",
+				controller:"phoneController"
+			});
+
+			$routeProvider.when("/dday",{
+				templateUrl:"view/dday.js",
+				controller:"ddayController"
+			});
+
+			$routeProvider.when("/date",{
+				templateUrl:"view/datepicker.js"
+			});
+
+			//주소가 없을 때 기본 페이지 설정
+			$routeProvider.otherwise({redirectTo:"/main"});
+		});
+
+		//service로 주입하는 예제
+		//$calc 이름으로 DDayCalculator객체를 주입
+		app.service('$calc',DDayCalculator);
+
+		app.controller("ddayController",['$scope','$calc', function($scope, $calc){
+			//메서드간의 연결
+			$scope.calcDday = $calc.execute;
+
+			$scope.insertDDay = function(ddays,title,date) {
+				//title : 디데이의 이름
+				//date : 그 날짜
+				//입력될 ddays배열
+				//alert(ddays);
+
+				var dday = new DDay(title,date);
+
+				//ddays들에 입력
+				ddays.push(dday);
+
+			}
+
+			$scope.ddays = [
+				new DDay("작년크리스마스",new Date(2014,11,25)),
+				new DDay("올해크리스마스",new Date(2015,11,25)),
+				new DDay("월드컵",new Date(2002,5,15)),
+				new DDay("화이트데이",new Date(2009,2,14))
+			];
+		}]);
+
+		app.controller("phoneController",['$scope', function($scope){
+			// $scope : 데이터의 스코프(영역) 지정
+			$scope.title = "스마트폰";
+
+			// 출력할 스마트폰의 정보(JSON)
+			$scope.phoneList = [
+				new Phone("아이폰", 825890, new Date(2014, 9, 31)),
+				new Phone("삼성 갤럭시노트5", 899800, new Date(2015, 7, 21)),
+				new Phone("LG G4", 699600, new Date(2015, 4, 25))
+			];
+		}]);
+	</script>
+</body>
+</html>

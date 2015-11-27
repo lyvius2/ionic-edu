@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html data-ng-app="todoApp">
+<head>
+<meta charset="UTF-8">
+<title>할일 목록</title>
+<style>
+body {
+	margin:0;}
+	#wrap {
+	width:1000px;margin:auto;border:1px solid #333;}
+	
+	#header {
+	width:1000px;
+	background:#aaa;
+	border-top:1px solid #aaa;
+	}
+	
+	#header ul {
+		margin:0;
+		padding:0;
+		list-style: none;
+		overflow: hidden;
+	}
+	
+	#header li {
+		float:left;
+		padding:5px 10px;
+	}
+	#content {
+		min-height:500px;
+	}
+	#footer {
+	height:100px;
+	line-height:100px;
+	text-align:center;
+	border-top:1px solid #333}
+	
+</style>
+</head>
+<body>
+<div id="wrap">
+	<div id="header">
+		<h1>로고</h1>
+		<ul>
+			<li><a href="#list">할일목록</a>
+			<li><a href="#write">할일쓰기</a>
+		</ul>
+	</div>
+	<div id="content">
+		<ng-view></ng-view>
+	</div>
+	<div id="footer">&copy; 2015 cai.com</div>
+</div>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-locale_ko.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-resource.min.js"></script>
+<script>
+	var app = angular.module("todoApp", ["ngRoute","ngResource"]);
+
+	app.config(function($routeProvider){
+		
+		$routeProvider.when("/list",{
+			templateUrl:"view/todos.js",
+			controller:"listController"
+		});
+
+		$routeProvider.when("/write",{
+			templateUrl:"view/write.js",
+			controller:"writeController"
+		});
+
+		$routeProvider.otherwise({redirectTo:"/list"});
+
+	});
+
+	// 서비스로 $resource 객체를 등록
+	app.service("$Todos",function($resource){
+		//$resource("주소","파라미터","메서드재정의")
+		//query() : 배열로 받아오기 : select(Read)
+		//get() : 1개 받아오기 : select(Read)
+		//delete() : delete(Delete)
+		//save() : insert("@_id.$oid"Create)
+
+		//update() : update(update) <-- 새로 만들기
+
+		return $resource("https://api.mongolab.com/api/1/databases/cai/collections/todos/:id",
+			{
+				apiKey : "K_0rXtTazYziRCm3zHA7dI9e1luNb25Q",
+				id : "@_id.$oid"
+			},{
+				"update":{"method":"PUT"},
+				"delete":{"method":"DELETE"}
+			});
+	});
+
+	app.controller("listController",["$scope","$Todos", function($scope, $Todos){
+		
+		//한개의 할일을 삭제하는 메서드
+		$scope.deleteTodo = function(todo){
+			todo.$delete(function(){
+				getTodos();
+			});
+		};
+
+		$scope.updateTodo = function(todo){
+			todo.$update(function(){
+				//수정되면 리스트 갱신
+				getTodos();
+			});
+		};
+
+		function getTodos() {
+			//로딩 이미지 보여주기
+			$scope.hide = false;
+
+			$scope.todos = $Todos.query(function(todos){
+				//서버에서 할일 목록을 받아오면
+				//여기에 호출
+				//할 일 목록을 다 받아왔으니까
+				//로딩이미지 숨기기
+				$scope.hide = true;
+
+
+				//브라우저의 개발자 콘솔에 출력
+				console.log(todos);
+			});
+		}
+
+		getTodos();
+
+	}]);
+
+	app.controller("writeController",["$scope", "$Todos", "$location", function($scope, $Todos, $location){
+
+		$scope.writeTodo = function(title, e){
+			//우리가 입력할 새로운 todo객체 생성
+			var todo = new $Todos();
+
+			//값을 설정
+			todo.title = title;
+			todo.end = false;
+
+			todo.$save(function(){
+				alert("입력됨!");
+
+				//입력되었으므로 페이지 이동
+				$location.path("/list");
+			});
+			e.preventDefault();
+		}
+	}]);
+</script>
+</body>
+</html>

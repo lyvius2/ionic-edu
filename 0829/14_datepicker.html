@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="directiveApp">
+<head>
+<meta charset="UTF-8">
+<title>datepicker</title> 
+<!-- 2) 해당 디렉티브의 css 가져오기 -->
+<link rel="stylesheet" href="css/angular-datepicker.css"/>
+<style>
+	datepicker {width:300px;}
+</style>
+</head>
+<body ng-controller="controller">
+	<!-- 3) custom directive -->
+	<datepicker data-date-format="yyyy-MM-dd">
+		<input type="text" ng-model="date" ng-change="makeDateObject(date)"/>
+	</datepicker>
+	<script src="js/angular.min.js"></script>
+	<!-- i18n(국제화처리) -->
+	<script src="js/angular-locale_ko.js"></script>
+	<!--
+		1) 우리가 원하는 datepicker 디렉티브를 구현한 모듈을 import해야한다.
+
+	-->
+	<script src="js/angular-datepicker.js"></script>
+	<script>
+		//app모듈에 해당 모듈을 추가합니다.
+		var app = angular.module("directiveApp",["720kb.datepicker"]); //모듈 추가
+		app.controller("controller",["$scope",function($scope){
+			$scope.makeDateObject = function(date){
+				// date : 단순 문자열
+				//alert(date);
+
+				//날짜 전용 객체
+				var day = new Date(date);
+				alert(day);
+			};
+		}]);
+	</script>
+</body>
+</html>

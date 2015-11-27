@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>탭 네비게이션</title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="naviApp">
+
+    <ion-pane>
+      <ion-header-bar class="bar-calm">
+        <h1 class="title">네비게이션 예제</h1>
+      </ion-header-bar>
+      <!-- view가 변경되는 곳 -->
+      <ion-nav-view>
+      </ion-nav-view>
+      <!-- tab메뉴 -->
+      <ion-tabs class="tabs-icon-top">
+        <ion-tab title="이모티콘" href="#list" icon="ion-checkmark-round"></ion-tab>
+        <ion-tab title="검색" href="#search" icon="ion-search"></ion-tab>
+        <ion-tab title="글쓰기" href="#write" icon="ion-edit"></ion-tab>
+      </ion-tabs>
+    </ion-pane>
+  </body>
+</html>

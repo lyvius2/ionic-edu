@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>이미지애니메이션</title>
+		<style>
+			body {
+				margin:0;
+				background:#3DB6CC;
+			}
+			
+			#wrap {
+				width:1100px;
+				height:400px;
+				margin:200px auto;
+				position: relative;
+				background-image:url(img/tv.png),url(img/door.png);
+				background-position:0 0, 600px 30px;
+				background-repeat: no-repeat;
+			}
+			
+			#friend1 {
+				width:112px;
+				height:212px;
+				background-image:url(img/friend1.png);
+				background-position:-1716px 0;
+				transform:translate(58px,57px);
+				background-repeat: no-repeat;
+				position: absolute;
+				left:150px;
+				animation:friend1 500ms step-start infinite;
+			}
+			
+			#friend2 {
+				width:194px;
+				height:271px;
+				background-image:url(img/friend2.png);
+				background-position:-371px -303px;
+				transform:translate(20px,35px);
+				background-repeat: no-repeat;
+				position: absolute;
+				left:160px;
+				top:-100px;
+				
+				animation:friend2 2s step-start infinite;
+			}
+			
+			#man {
+				width:254px;
+				height:263px;
+				background-image:url(img/man-loop.png);
+				background-position:-1502px 0;
+				transform:translate(9px,31px);
+				background-repeat: no-repeat;
+				position: absolute;
+				left:300px;
+				top:-80px;
+			}
+			
+			#wife {
+				width:81px;
+				height:208px;
+				background-image:url(img/wife.png);
+				background-position:-1518px -1016px;
+				transform:translate(19px,81px);
+				background-repeat: no-repeat;
+				position: absolute;
+				right:100px;
+				top:-80px;
+			}
+			
+			@keyframes friend1 {
+				6.666667% {
+					width:112px;
+					height:212px;
+					background-position:-1716px 0;
+					transform:translate(58px,57px);
+				}
+				13.333334% {
+					width:132px;
+					height:209px;
+					background-position:-1828px 0;
+					transform:translate(38px,60px);
+				}
+				20.000001% {
+					width:145px;
+					height:222px;
+					background-position:-1571px 0;
+					transform:translate(25px,47px);
+				}
+				26.666667% {
+					width:149px;
+					height:242px;
+					background-position:-1236px 0;
+					transform:translate(21px,27px);
+				}
+				33.33333% {
+					width:168px;
+					height:254px;
+					background-position:-953px 0;
+					transform:translate(14px,15px);
+				}
+				40% {
+					width:182px;
+					height:263px;
+					background-position:-0px 0;
+					transform:translate(6px,6px);
+				}
+				46.666669%{
+					width:166px;
+					height:262px;
+					background-position:-333px 0;
+					transform:translate(28px,7px);
+				}
+				53.333336%{
+					width:151px;
+					height:262px;
+					background-position:-182px 0;
+					transform:translate(48px,7px);
+				}
+				60.000003%{
+					width:155px;
+					height:262px;
+					background-position:-499px 0;
+					transform:translate(46px,7px);
+				}
+				
+				66.66667%{
+					width:155px;
+					height:259px;
+					background-position:-654px 0;
+					transform:translate(46px,10px);
+				}
+				73.333337%{
+					width:144px;
+					height:254px;
+					background-position:-809px 0;
+					transform:translate(49px,15px);
+				}
+				80.000004%{
+					width:115px;
+					height:249px;
+					background-position:-1121px 0;
+					transform:translate(63px,20px);
+				}
+				86.666671%{
+					width:92px;
+					height:239px;
+					background-position:-1385px 0;
+					transform:translate(79px,30px);
+				}
+				93.333338%{
+					width:94px;
+					height:222px;
+					background-position:-1477px 0;
+					transform:translate(76px,47px);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="friend2"></div>
+			<div id="man"></div>
+			<div id="friend1"></div>
+			<div id="wife"></div>
+		</div>
+	</body>
+</html>

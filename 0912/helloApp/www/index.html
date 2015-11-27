@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane>
+      <ion-header-bar class="bar-calm">
+        <div class="buttons">
+          <button class="button button-assertive">삭제</button>
+          <button class="button">세팅</button>
+        </div>
+        <h1 class="title">헤더영역</h1>
+        <div class="buttons">
+          <button class="button">세팅</button>
+          <button class="button"><i class="ion-checkmark-circled"></i>세팅</button>
+        </div>
+      </ion-header-bar>
+      <ion-content>
+        <h1>여러가지 버튼</h1>
+        <button class="button button-balanced">button-balanced</button>
+        <button class="button button-energized">
+          button-energized
+        </button>
+        <button class="button button-assertive">
+          button-assertive
+        </button>
+
+        <h1>투명한/블록레벨 버튼</h1>
+        <button class="button button-block button-positive">Block Button</button>
+        <button class="button button-outline button-positive">Outlined Button</button>
+        <button class="button button-clear button-positive">
+          Clear Button
+        </button>
+        <a class="button icon-right ion-chevron-right button-calm">Learn More</a>
+
+        <h1>버튼들의 묶음</h1>
+        <div class="button-bar">
+          <a class="button">First</a>
+          <a class="button">Second</a>
+          <a class="button">Third</a>
+        </div>
+
+        <hr/>
+        <h2>기본 리스트</h2>
+
+        <ion-list>
+          <ion-item class="item item-divider">김</ion-item>
+          <ion-item href="#list1">리스트1</ion-item>
+          <ion-item href="#list2">리스트2</ion-item>
+          <ion-item href="#list3">리스트3</ion-item>
+        </ion-list>
+
+        <div class="list">
+            <a class="item item-avatar" href="#">
+              <img src="img/neo.png">
+              <h2>Venkman</h2>
+              <p>Back off, man. I'm a scientist.</p>
+            </a>
+        </div>
+
+        <div class="list">
+            <a class="item item-thumbnail-left" href="#">
+              <img src="img/muji.png">
+              <h2>Pretty Hate Machine</h2>
+              <p>Nine Inch Nails</p>
+            </a>
+        </div>
+
+        <div class="list list-inset">
+            <div class="item">
+              Raiders of the Lost Ark
+            </div>
+            <div class="item">
+              R2
+            </div>
+            <div class="item">
+              R3
+            </div>
+        </div>
+
+        <div class="list card">
+
+          <a href="#" class="item item-icon-left">
+            <i class="icon ion-home"></i>
+            Enter home address
+          </a>
+
+          <a href="#" class="item item-icon-left">
+            <i class="icon ion-ios-telephone"></i>
+            Enter phone number
+          </a>
+
+          <a href="#" class="item item-icon-left">
+            <i class="icon ion-wifi"></i>
+            Enter wireless password
+          </a>
+
+          <a href="#" class="item item-icon-left">
+            <i class="icon ion-card"></i>
+            Enter card information
+          </a>
+
+        </div>
+
+      </ion-content>
+      <ion-footer-bar class="bar bar-calm">
+        <h1 class="title">
+          &copy;2015 cai.com
+        </h1>
+      </ion-footer-bar>
+    </ion-pane>
+  </body>
+</html>

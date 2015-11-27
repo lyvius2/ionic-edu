@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery 복습</title>
+<link rel="stylesheet" 
+href="http://fonts.googleapis.com/earlyaccess/hanna.css" />
+<style>
+	body {
+		font-family: 'Hanna', serif;
+	}
+	input {
+		font-family: 'Hanna', serif;
+		font-size:22px;
+	}
+</style>
+</head>
+<body>
+	<div id="txtBox">
+		<input type="text" />
+		<h1>안녕하세요?</h1>
+		<h2>여기도 갱신되어야 함</h2>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script>
+		
+		//jquery는 이벤트 기반
+		$("input").keyup(function(){
+			//keyup 이벤트 처리
+			//input요소가 가진 value값을 얻기
+			var value = $("input").val();
+			
+			//얻어온 값을 h1에 입력
+			$("h1").html(value);
+
+			$("h2").html(value);
+		});
+
+	
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>프레임애니메이션</title>
+		<style>
+			body {
+				background:#339499;
+				text-align: center;
+				margin:100px;
+				overflow: hidden;
+			}
+			
+			/*
+				animation은 css속성값의
+				변화
+
+				keyframes 와
+				animation속성을 이용
+
+				keyframes에는 css의 변화값
+
+				animation속성에는
+				시간, 이름, 가속도 ,횟수, 방향등
+
+
+			*/
+
+@keyframes ani1  {
+	0% {transform:rotate(30deg);}
+	100% {transform:rotate(-30deg);}
+}
+
+img {
+	animation:.5s ani1 ease-in-out  infinite alternate;
+	transform-origin:50% 0%;
+}
+			
+			
+		</style>
+	</head>
+	<body>
+		<img src="img/frame-getstarted.png" />
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<title>Hello Angular.js</title>
+<link rel="stylesheet" 
+href="http://fonts.googleapis.com/earlyaccess/hanna.css" />
+<style>
+	body {
+		font-family: 'Hanna', serif;
+	}
+	input {
+		font-family: 'Hanna', serif;
+		font-size:22px;
+	}
+</style>
+</head>
+<!-- 태그 속성 앞에 'data'를 붙여야 표준 -->
+<!-- ng-...은 비표준
+	 표준인 x-ng-..., data-ng-...
+-->
+<!-- 2) ng-app지정 -->
+<body data-ng-app="helloApp">
+	<!-- 3) Controller 지정 -->
+ 	<div data-ng-controller="helloController">
+ 		<!-- value라는 이름의 모델을 지정 -->
+ 		<input type="text" data-ng-model="value"/>
+ 		<!-- model인 value를 요소에 바인딩 -->
+ 		<h1>{{value}}</h1>
+ 		<h2 data-ng-bind="value"></h2>
+ 		<h3>물건의 갯수는 <span ng-bind="value"></span>개</h3>
+ 		<h3>물건의 갯수는 {{value}}개</h3>
+	</div>
+	<!-- 1) angular.js를 불러오기 -->
+	<script src="js/angular.min.js"></script>
+	<script>
+		// 4)app의 모듈 설정
+		// 모듈은 컨트롤러 등을 가지고 있는 단위
+		var app = angular.module("helloApp",[]);
+
+		// 5) controller의 설정
+		app.controller("helloController",['$scope',function($scope){
+			//View와 Model을 연결하는 연결고리
+			//value가 데이터(모델)
+			$scope.value = "Hello Angular!";
+
+		}]);
+
+		//M : Model(데이터)
+		//V : View(UI / html)
+		//C : Controller(M과 V의 연동 등 컨트롤 타워 역할)
+
+
+	</script>
+ </body>
+ </html>
+ 
+ 
+ 
+ 
+ 

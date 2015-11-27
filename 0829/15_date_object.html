@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date객체</title>
+</head>
+<body>
+	<!-- 날짜 계산 -->
+	<script src="js/DDayCalculator.js"></script>
+	<script type="text/javascript">
+		//new Date(); <- 인자없으면 현재시간
+		var now = new Date();	// 현재시간
+		
+		//new Date(년, 월, 일)
+		var release = new Date(2015, 7, 5);
+
+		//new Date("yyyy-MM-dd") 패턴일 때 
+		release = new Date("2015-7-5");
+		//alert(release);
+		
+		//new Date(linux Time)
+
+		//리눅스 타임?
+		//1970년 1월 1일 0시 0분 0초를 기준으로 경과한 초 단위 시간(밀리세컨드)
+
+		//해당 날짜의 리눅스 타임 얻기
+		var linux = now.getTime();
+		//alert(linux/1000);
+
+		var yesterday = new Date("2015-08-28");
+		//var today = new Date("2015-08-29");
+		var today = new Date();
+
+		//alert((today - yesterday)/1000/60/60/24);	//일 단위 날짜차이
+
+		var calc = new DDayCalCulator();
+		var christmas = new Date("2014-12-25");
+		var dday = calc.execute(christmas);
+
+		alert(dday);
+	</script>
+</body>
+</html>

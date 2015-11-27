@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>font_awesome</title>
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<style>
+
+		/*
+			font-awesome api는 아이콘을
+			웹폰트로 이용
+
+			장점
+			1) 확대,축소시 안깨짐
+			2) 아이콘 직접 제작할 필요없음
+			3) 아이콘의 모양이 일관성있음
+
+
+		*/
+			@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+			
+			body {
+				font-family:"Hanna",sans-serif;
+			}
+			
+			h1 {
+				font-size:100px ;
+				text-align: center;
+				font-weight: normal;
+			}
+
+			#youtube>span {
+				color:#CC181E;
+				margin-right:5px;
+		   }
+			#facebook>span {
+                    color:#3A5795
+            }
+            
+            .fa-hand-peace-o {
+            	color:deeppink;
+            }
+			
+		</style>
+	</head>
+	<body>
+		<h1 id="youtube">
+			<i class="fa fa-hand-peace-o"></i>
+			<span>YouTube</span></h1>
+		<h1>
+			<i class="fa fa-rocket"></i>
+			<span>다이아몬드</span></h1>
+		<h1 id="facebook">
+			<i class="fa fa-facebook-official"></i>
+			<span>페이스북</span></h1>
+	</body>
+</html>

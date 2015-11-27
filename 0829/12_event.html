@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="eventApp">
+<head>
+<meta charset="UTF-8">
+<title>이벤트 처리</title>
+<link rel="stylesheet" 
+href="http://fonts.googleapis.com/earlyaccess/hanna.css" />
+<style>
+	#clickBox {
+		font-family: 'Hanna', serif;
+		font-size:100px;
+		width:800px;
+		height:600px;
+		text-align:center; 
+		line-height:600px;
+		border:1px solid #333;
+		margin:auto;
+		cursor: pointer;
+	}
+</style>
+</head>
+<body ng-controller="eventController">
+	<div id="clickBox" ng-click="getXY($event)">
+		<span>{{msg}}</span>
+	</div>
+	<script src="js/angular.min.js"></script>
+	<script>
+		var app = angular.module("eventApp",[]);
+		app.controller("eventController",["$scope",function($scope){
+			
+			$scope.msg = "클릭해보세요";
+			$scope.getXY = function(e){
+				var x = e.clientX;
+				var y = e.clientY;
+
+				$scope.msg = "x:"+x+"/y:"+y;
+			}
+		}]);
+	</script>
+</body>
+</html>

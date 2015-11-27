@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>rotateImage 3D</title>
+		<link rel="stylesheet" href="css/nanumbarungothic.css"/>
+<style>
+
+	:focus {outline:none;}
+	::-moz-focus-inner {border:0;}
+
+	body {
+		background:#444;
+		font-family: nbg,sans-serif;
+	}
+	#slideMove{
+		width:800px;
+		height:600px;
+		position: relative;
+		margin:auto;
+		
+	}
+	#slideBox {
+		width:800px;
+		height:600px;
+		position: relative;
+		border:10px solid #fff;
+		perspective: 1200px;
+		-webkit-perspective: 1200px;
+		overflow: hidden;
+	}
+	
+	#imgs {
+		width:800px;
+		height:600px;
+		position: absolute;
+		left:0;
+		top:0;
+		
+		
+	}
+	
+	#imgs>img {
+		position: absolute;
+		left:0;
+		top:0;
+	}
+
+	
+	
+	#prevBtn,#nextBtn {
+		width:400px;
+		height:600px;
+		position: absolute;
+		top:0;
+		padding: 0;
+		border:none;
+		margin: 0;
+		background:rgba(0,0,0,0);
+		transition:.2s ease;
+	}
+	
+	#prevBtn:hover {
+		background:rgba(0,0,0,.3);
+		cursor:url(img/btn_prev_2.cur.ico) 32 0,pointer;
+	}
+	
+	#nextBtn:hover {
+		background:rgba(0,0,0,.3);
+		cursor:url(img/btn_next_2.cur.ico) 0 0,pointer;
+	}
+	
+	body #slideBox>#nextBtn {
+		right:0;
+		top:0;	
+		text-align: right;
+	}
+	
+	h1 {
+		color:#fff;
+		text-align: center;
+	}
+	
+</style>
+	</head>
+	<body>
+<body>
+<h1>3d로 돌아가는 이미지 슬라이드</h1>
+<div id="slideMove">
+	<div id="slideBox">
+		<div id="imgs">
+			<img src="img/1.jpg"/>
+			<img src="img/2.jpg"/>
+			<img src="img/3.jpg"/>
+			<img src="img/4.jpg"/>
+		</div><!-- //imgs -->
+		<button id="prevBtn"></button>
+		<button id="nextBtn"></button>
+	</div><!-- //slideBox -->
+</div><!-- //slideMove -->
+<!-- jquery  -->
+
+</body>
+</html>
+
+
+
+
+

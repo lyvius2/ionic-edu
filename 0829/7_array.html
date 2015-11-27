@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>array</title>
+	</head>
+	<body>
+		
+		<script>
+
+			var arr = ["디오","조정석","남주혁","공유"];
+
+			//angular는 backbone.js와 달리
+			//순수자바스크립트 객체 및 배열을 사용합니다.
+			//그래서 배열의 메서드를 알아야 함.
+			//(backbone.js는 Model객체, Controller객체가 있음)
+
+			//자바에서는 배열이 메서드가 없음
+			//자바스크립트는 배열에 메서드가 있음
+			
+			//배열 length속성 : 갯수
+			alert(arr.length);
+
+			//shift() unshift() push() pop()
+
+			// 1) push() : 마지막에 추가
+			console.log(arr);
+			arr.push("탑");
+			console.log(arr);
+
+			// 2) pop() : 마지막 index를 지움
+			arr.pop();
+			console.log(arr);
+
+			// 3) shift() : 첫 index를 지움
+			arr.shift();
+			console.log(arr);
+
+			// 4) unshift() : 제일 앞에 추가
+			arr.unshift("김연아");
+			arr.unshift("도경수");
+			arr.push("강정호");
+			console.log(arr);
+
+			// 5) splice(인덱스,갯수)
+			// 해당 인덱스부터 갯수를 삭제시키는 메서드
+			arr.splice(3,1);
+			console.log(arr);
+		</script>
+	</body>
+</html>

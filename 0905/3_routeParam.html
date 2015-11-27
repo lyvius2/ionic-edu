@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html data-ng-app="routeApp">
+<head>
+<meta charset="UTF-8">
+<title>라우터 파라미터</title>
+<style>
+	body {
+	margin:0;}
+	#wrap {
+	width:1000px;margin:auto;border:1px solid #333;}
+	
+	#header {
+	width:1000px;
+	background:#aaa;
+	border-top:1px solid #aaa;
+	}
+	
+	#header ul {
+		margin:0;
+		padding:0;
+		list-style: none;
+		overflow: hidden;
+	}
+	
+	#header li {
+		float:left;
+		padding:5px 10px;
+	}
+	#content {
+		min-height:500px;
+	}
+	#footer {
+	height:100px;
+	line-height:100px;
+	text-align:center;
+	border-top:1px solid #333}
+	
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<h1>로고</h1>
+			<ul>
+				<li><a href="#list">목록</a>
+			</ul>
+		</div>
+		<div id="content">
+			<!-- 변경될 view -->
+			<data-ng-view></data-ng-view>
+		</div>
+		<div id="footer">&copy; 2015 cai.com</div>
+	</div>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-locale_ko.js"></script>
+	<script src="js/angular-route.min.js"></script>
+	<script>
+		var app = angular.module("routeApp",["ngRoute"]);
+
+		app.config(function($routeProvider){
+			
+			$routeProvider.when("/list",{
+				templateUrl:"view/list.js",
+				controller:"listController"
+			});
+
+			$routeProvider.when("/movie/:movieId",{
+				templateUrl:"view/movie.js",
+				controller:"movieController"
+			});
+
+			//기본 메인페이지
+			$routeProvider.otherwise({rediectTo:"/list"});
+		});
+
+		// service, factory는 객체 주입
+		// value : 순수한 데이터 주입
+		app.value("$movies",[
+			{"id":0, "poster":"poster1.jpg","director":"류승완","name":"베테랑","grade":106,"gradeNum":12},
+			{"id":1, "poster":"poster4.jpg","director":"백감독","name":"뷰티 인사이드","grade":37,"gradeNum":4},
+			{"id":2, "poster":"poster2.jpg","director":"최동훈","name":"암살","grade":51,"gradeNum":6},
+			{"id":3, "poster":"poster5.jpg","director":"강효진","name":"미쓰와이프","grade":68,"gradeNum":11},
+			{"id":4, "poster":"poster3.jpg","director":"니마 누리자데","name":"아메리칸 울트라","gradeNum":29,"gradeNum":4},
+			{"id":5, "poster":"poster6.jpg","director":"신동엽","name":"치외법권","grade":23,"gradeNum":3}
+		]);
+
+		app.controller("listController",["$scope","$movies", function($scope,$movies){
+			$scope.title = "핫 무비";
+			$scope.movies = $movies;
+
+		}]);
+
+		app.controller("movieController",["$scope", "$movies", "$routeParams", function($scope,$movies,$routeParams){
+			// movie/1
+			// movie/2 .....
+			// 등 파라미터로 넘어온 정보를 받아서 처리하기 위해서 $routeParams 객체가 있습니다.
+			
+			//alert($routeParams.movieId);
+			$scope.movie = $movies[$routeParams.movieId];
+
+		}]);
+	</script>
+</body>
+</html>

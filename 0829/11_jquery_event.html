@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 처리</title>
+<link rel="stylesheet" 
+href="http://fonts.googleapis.com/earlyaccess/hanna.css" />
+<style>
+	#clickBox {
+		font-family: 'Hanna', serif;
+		font-size:100px;
+		width:800px;
+		height:600px;
+		text-align:center; 
+		line-height:600px;
+		border:1px solid #333;
+		margin:auto;
+		cursor: pointer;
+	}
+</style>
+</head>
+<body >
+	<div id="clickBox" >
+		<span id="msg"></span>
+	</div>
+	<script src="js/jquery.js"></script>
+	<script>
+		//마우스 이벤트이기 때문에
+		//인자로 마우스이벤트 객체를 받음
+		$("#clickBox").click(function(e){
+			//alert(e.originalEvent);
+
+			var x = e.clientX;
+			var y = e.clientY;
+
+			$("#msg").text("x:"+x+"/y:"+y);
+		});
+	</script>
+</body>
+</html>
